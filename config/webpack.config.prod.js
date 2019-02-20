@@ -194,11 +194,11 @@ module.exports = {
               use: {
 		  loader: 'babel-loader',
 		  options: {  // << add options with presets env
-		      presets: ['env']
+		      presets: ['es2015', 'env']
 		  }
 	      }
 	  }
-      ]      
+      ]
   },
 
   // We use PostCSS for autoprefixing only.
