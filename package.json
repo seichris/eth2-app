@@ -2,7 +2,7 @@
   "name": "eth2phone-dapp",
   "version": "0.3.5",
   "private": true,
-  "homepage": "https://eth2.io/",
+  "homepage": "https://seichris.github.io/eth2-app/",
   "devDependencies": {
     "autoprefixer": "6.5.1",
     "babel-core": "6.17.0",
