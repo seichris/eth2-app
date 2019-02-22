@@ -95,7 +95,7 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
-    "deploy": "npm run build&&gh-pages -d build",
+    "deploy": "gh-pages -d build",
     "libphonenumber-metadata": "libphonenumber-generate-metadata metadata.full.json"
   },
   "jest": {
