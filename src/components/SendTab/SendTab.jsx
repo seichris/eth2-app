@@ -14,20 +14,24 @@ import { Error, ButtonLoader } from './../common/Spinner';
 import WithHistory from './../HistoryScreen/WithHistory';
 import E2PCarousel from './../common/E2PCarousel';
 import web3Service from './../../services/web3Service';
-
+import RetinaImage from 'react-retina-image';
 
 const styles = {
     title: {
         width: '90%',
-        height: 110,
+        height: 120,
         display: 'block',
         margin: 'auto',
-        fontSize: 24,
+        fontSize: 48,
         lineHeight: 1.4,
         fontFamily: 'SF Display Black',
         textAlign: 'center',
         marginBottom: 10,
         marginTop: 27
+    },
+    marginTopRow: {
+      paddingTop: 20,
+      paddingBottom: 10
     },
     text1: {
         width: '85%',
@@ -135,7 +139,7 @@ class Tab extends Component {
 
     _onSubmit() {
 
-        // hack for issue with phonenumber lib - https://github.com/bl00mber/react-phone-input-2/issues/10	
+        // hack for issue with phonenumber lib - https://github.com/bl00mber/react-phone-input-2/issues/10
         let phone = this.phoneNumber.state.formattedNumber;
 
         // remove formatting from phone number
@@ -249,18 +253,19 @@ class Tab extends Component {
             phoneInputStyle = styles.hiddenInput
         }
         return (
+          <div>
             <Row>
                 <Col sm={4} smOffset={4}>
 
                     <div>
-                        <div style={(this.state.phoneOrLinkActive && window.innerWidth < 321) ? {...styles.title, height: 140, width: '98%'} : styles.title}>Send <div style={{ display: 'inline', color: '#999999' }}>Ether</div> to anyone<br />
-                            <div style={{ display: 'inline', verticalAlign: 'sub', marginRight: 6 }}>simply by</div><PhoneOrLink active={this.state.phoneOrLinkActive} height={this.state.phoneOrLinkActive === false ? 37.5 : 71} handleClick={this._onPhoneLinkButtonClick.bind(this)} /></div>
+                        <div style={(this.state.phoneOrLinkActive && window.innerWidth < 321) ? {...styles.title, height: 140, width: '98%'} : styles.title}>Pay anyone in <div style={{ display: 'inline', color: '#999999' }}>crypto</div> <br />
+                      {/*<div style={{ display: 'inline', verticalAlign: 'sub', marginRight: 6 }}>simply by</div><PhoneOrLink active={this.state.phoneOrLinkActive} height={this.state.phoneOrLinkActive === false ? 37.5 : 71} handleClick={this._onPhoneLinkButtonClick.bind(this)} />*/}</div>
                         <div style={styles.container}>
                             <div style={phoneInputStyle}>
                                 <PhoneInput onChange={() => this.setState({ phoneError: false, errorMessage: "" })}
                                     _ref={(ref) => { this.phoneNumber = ref; }} placeholder="Phone number" error={this.state.phoneError} />
-                            </div>			    
-			    
+                            </div>
+
                             <div style={styles.numberInput}>
                                 <NumberInput
                                     onChange={({ target }) => (this.setState({ amount: target.value, numberInputError: false, errorMessage: "" })
@@ -287,18 +292,39 @@ class Tab extends Component {
                                     fetching={this.state.fetching}
                                     error={this.state.errorMessage} />) :
                                     <div style={styles.betaContainer}>
-                                        <span style={styles.betaText}>
-                                            *In beta you can send
-				 <span style={styles.betaBold}> 1 ETH</span> max
-				 </span>
+                                      <span style={styles.betaText}>
+                                          *In beta you can send
+                              				 <span style={styles.betaBold}> 1 ETH</span> max
+                              				 </span>
                                     </div>}
                             </div>
-                            <CheckBox onSubmit={() => this.state.checked === false ? this.setState({ checked: true, buttonDisabled: false, checkboxTextColor: '#000' }) : this.setState({ checked: false, buttonDisabled: false, checkboxTextColor: '#000' })} textColor={this.state.checkboxTextColor} />
+                            {/*<CheckBox onSubmit={() => this.state.checked === false ? this.setState({ checked: true, buttonDisabled: false, checkboxTextColor: '#000' }) : this.setState({ checked: false, buttonDisabled: false, checkboxTextColor: '#000' })} textColor={this.state.checkboxTextColor} />*/}
                         </div>
                     </div>
                 </Col>
             </Row>
-
+            <Row style={styles.marginTopRow}>
+                <Col sm={4} smOffset={2}>
+                    <div>
+                    <h3>What is the Linkdrop Protocol?</h3>
+                    <p>Linkdrop Protocol is an open protocol for including digital assets and onboarding properties into links, which enables users and DApps to send crypto without knowing the receivers Ethereum address in advance. Read the proposal paper</p>
+                    </div>
+                </Col>
+                <Col sm={4}>
+                    <div>
+                    <RetinaImage src="https://d3n32ilufxuvd1.cloudfront.net/516900f311bc0f0000000254/1303424/upload-a0f463dd-465a-4fca-bad7-3f3452e087e4.png" />
+                    </div>
+                </Col>
+            </Row>
+            <Row style={styles.marginTopRow}>
+                <Col sm={8} smOffset={2}>
+                    <div >
+                    <h3>Tested in Collaboration with</h3>
+                    <p>Coinbase, Trust, Status, Opera, imToken</p>
+                    </div>
+                </Col>
+            </Row>
+          </div>
         );
     }
 
